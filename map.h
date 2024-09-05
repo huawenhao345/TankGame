@@ -3,9 +3,6 @@
 
 #define MAP_LENGTH 52
 #define MAP_WIDTH 52
-
-
-
 typedef enum block
 {
     empty = 0,
@@ -21,11 +18,9 @@ typedef struct
     Block statu;
 } Point;
 
-// int MapChange(Block Map[MAP_LENGTH][MAP_WIDTH], int x, int y, Block a);
-int PrintMap(Block Map[MAP_LENGTH][MAP_WIDTH]);
-int RandomMapGenerate(Block Map[MAP_LENGTH][MAP_WIDTH]);
-// int BuildAapMidWall(Block Map[MAP_LENGTH][MAP_WIDTH]);
+int PrintMap(Block Map[MAP_WIDTH][MAP_LENGTH]);
+int RandomMapGenerate(Block Map[MAP_WIDTH][MAP_LENGTH]);
 
-extern Block GameMap[MAP_LENGTH][MAP_WIDTH];
+extern Block GameMap[MAP_WIDTH][MAP_LENGTH];
 
 #endif
