@@ -12,12 +12,6 @@
 
 Block GameMap[MAP_LENGTH][MAP_WIDTH] = {};
 
-int MapChange(Block Map[MAP_LENGTH][MAP_WIDTH], int x, int y, Block a)
-{
-    Map[x][y] = a;
-    return 0;
-}
-
 int BuildWall(Block Map[MAP_LENGTH][MAP_WIDTH], Point UpLeft, Point DownRight)
 {
     int x_gap = DownRight.x - UpLeft.x;
@@ -43,15 +37,42 @@ int BuildWall(Block Map[MAP_LENGTH][MAP_WIDTH], Point UpLeft, Point DownRight)
         Map[x_][y] = wall;
     }
 
-    Point UpLeft_1 = {UpLeft.x, UpLeft.y, empty}, DownRight_1 = {x_ - 1, y_ - 1, empty};            // 左上
-    Point UpLeft_2 = {UpLeft.x, y_ + 1, empty}, DownRight_2 = {x_ - 1, MAP_WIDTH - 2, empty};       // 左下
-    Point UpLeft_3 = {x_ + 1, UpLeft.y, empty}, DownRight_3 = {MAP_LENGTH - 2, y_ - 1, empty};      // 右上
-    Point UpLeft_4 = {x_ + 1, y_ + 1, empty}, DownRight_4 = {MAP_LENGTH - 2, MAP_WIDTH - 2, empty}; // 右下
+    Point UpLeft_1 = {UpLeft.x, UpLeft.y, empty}, DownRight_1 = {x_ - 1, y_ - 1, empty};       // 左上
+    Point UpLeft_2 = {UpLeft.x, y_ + 1, empty}, DownRight_2 = {x_ - 1, DownRight.y, empty};    // 左下
+    Point UpLeft_3 = {x_ + 1, UpLeft.y, empty}, DownRight_3 = {DownRight.x, y_ - 1, empty};    // 右上
+    Point UpLeft_4 = {x_ + 1, y_ + 1, empty}, DownRight_4 = {DownRight.x, DownRight.y, empty}; // 右下
     // 分开来的四个区域，递归分开
     BuildWall(Map, UpLeft_1, DownRight_1); // 左上
     BuildWall(Map, UpLeft_2, DownRight_2); // 左下
     BuildWall(Map, UpLeft_3, DownRight_3); // 右上
     BuildWall(Map, UpLeft_4, DownRight_4); // 右下
+
+    // 随机三面墙里面打洞 从横的墙壁的顺时针编号为0,1,2,3
+    int a[4] = {0};
+    a[rand() % 4] = 1;
+    for (int i = 0; i < 4; i++)
+    {
+        if (a[i] == 0)
+        {
+            switch (i)
+            {
+            case 0: // 0号墙
+                Map[UpLeft.x + rand() % (x_ - UpLeft.x + 1)][y_] = empty;
+                break;
+            case 1: // 1号墙
+                Map[x_][UpLeft.y + rand() % (y_ - UpLeft.y + 1)] = empty;
+                break;
+            case 2: // 2号墙
+                Map[x_ + rand() % (x_ - UpLeft.x + 1)][y_] = empty;
+                break;
+            case 3: // 3号墙
+                Map[x_][y_ + rand() % (y_ - UpLeft.y + 1)] = empty;
+                break;
+            default:
+                break;
+            }
+        }
+    }
 
     return 0;
 }
