@@ -9,6 +9,7 @@
 
 int main(void)
 {
+    RandomMapGenerate(GameMap);
     PrintMap(GameMap);
 
     return 0;

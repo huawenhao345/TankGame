@@ -18,36 +18,47 @@ int MapChange(Block Map[MAP_LENGTH][MAP_WIDTH], int x, int y, Block a)
 
 int RandomMapGenerate(Block Map[MAP_LENGTH][MAP_WIDTH])
 {
+    Point UpLeft = {0, 0, empty}, DownRight = {0, 0, empty};
     // 初始化
     for (int x = 0; x < MAP_LENGTH; x++)
     {
         for (int y = 0; y < MAP_WIDTH; y++)
         {
-            GameMap[x][y] = empty;
+            Map[x][y] = empty;
         }
-        printf("\n");
     }
 
     // 四周墙壁x，y
     for (int x = 0; x < MAP_LENGTH; x++)
     {
-        GameMap[x][0] = wall;
-        GameMap[x][MAP_WIDTH - 1] = wall;
+        Map[x][0] = wall;
+        Map[x][MAP_WIDTH - 1] = wall;
     }
     for (int y = 0; y < MAP_LENGTH; y++)
     {
-        GameMap[0][y] = wall;
-        GameMap[MAP_LENGTH - 1][y] = wall;
+        Map[0][y] = wall;
+        Map[MAP_LENGTH - 1][y] = wall;
+    }
+
+    return 0;
+}
+
+int BuildWall(Point UpLeft, Point DownRight)
+{
+
+    if (DownRight.x - UpLeft.x < 2 || DownRight.y - UpLeft.y < 2)
+    {
+        return -1;
+    }
+
+
+    while (/* condition */)
+    {
+        /* code */
     }
 }
 
-// int BuildAapMidWall(Block Map[MAP_LENGTH][MAP_WIDTH])
-// {
-
-
-// }
-
-int PrintMap(const Block Map[MAP_LENGTH][MAP_WIDTH])
+int PrintMap(Block Map[MAP_LENGTH][MAP_WIDTH])
 {
     for (int x = 0; x < MAP_LENGTH; x++)
     {
@@ -59,16 +70,15 @@ int PrintMap(const Block Map[MAP_LENGTH][MAP_WIDTH])
                 printf("  ");
                 break;
             case 1:
-                printf("口");
+                printf(" O");
                 break;
             case 2:
-                printf("一");
+                printf("-");
                 break;
             // case 3:
 
             //     break;
             // case 4:
-
             //     break;
             // case 5:
 
