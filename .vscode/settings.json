@@ -5,6 +5,9 @@
     "time.h": "c",
     "windows.h": "c",
     "stdio.h": "c",
-    "map.h": "c"
+    "map.h": "c",
+    "array": "c",
+    "string_view": "c",
+    "type_traits": "c"
   }
 }
