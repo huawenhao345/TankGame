@@ -4,7 +4,7 @@
 #define MAP_LENGTH 52
 #define MAP_WIDTH 52
 
-//(2,2)~(51,51)
+
 
 typedef enum block
 {
