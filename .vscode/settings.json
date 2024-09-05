@@ -1,0 +1,10 @@
+{
+  "files.associations": {
+    "*.c": "c",
+    "stdbool.h": "c",
+    "time.h": "c",
+    "windows.h": "c",
+    "stdio.h": "c",
+    "map.h": "c"
+  }
+}
