@@ -25,7 +25,7 @@ int BuildWall(Block Map[MAP_WIDTH][MAP_LENGTH], Point UpLeft, Point DownRight)
     int x_ = UpLeft.x + 1 + rand() % (x_gap - 1);
     int y_ = UpLeft.y + 1 + rand() % (y_gap - 1);
     // DownRight = (Point){MAP_LENGTH - 2, MAP_WIDTH - 2, empty};
-    // printf("%d", DownRight.x);
+    // printf("%d", DownRight.x);//use for test
 
     // 画中间的线
     /*实际上，map[][]的正确方向应该是这样的  map[y][x]才匹配下图
@@ -71,28 +71,29 @@ int BuildWall(Block Map[MAP_WIDTH][MAP_LENGTH], Point UpLeft, Point DownRight)
     // 随机三面墙里面打洞 从横的墙壁的顺时针编号为0,1,2,3
     int a[4] = {0};
     a[rand() % 4] = 1;
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 4; i++) // TODO:解决位于顶点出处的路的生成
     {
         if (a[i] == 0)
         {
             switch (i)
             {
             case 0: // 0号墙
-                Map[UpLeft.x + rand() % (x_ - UpLeft.x + 1)][y_] = empty;
+                Map[y_][UpLeft.x + rand() % (x_ - UpLeft.x + 1)] = empty;
                 break;
             case 1: // 1号墙
-                Map[x_][UpLeft.y + rand() % (y_ - UpLeft.y + 1)] = empty;
+                Map[UpLeft.y + rand() % (y_ - UpLeft.y + 1)][x_] = empty;
                 break;
             case 2: // 2号墙
-                Map[x_ + rand() % (x_ - UpLeft.x + 1)][y_] = empty;
+                Map[y_][x_ + rand() % (x_ - UpLeft.x + 1)] = empty;
                 break;
             case 3: // 3号墙
-                Map[x_][y_ + rand() % (y_ - UpLeft.y + 1)] = empty;
+                Map[y_ + rand() % (y_ - UpLeft.y + 1)][x_] = empty;
                 break;
             default:
                 break;
             }
         }
+        // PrintMap(Map); // use for test
     }
 
     return 0;
