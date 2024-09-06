@@ -23,6 +23,8 @@ int BuildWall(Block Map[MAP_WIDTH][MAP_LENGTH], Point UpLeft, Point DownRight)
     }
 
     int x_ = UpLeft.x + 1 + rand() % (x_gap - 1);
+    // DownRight = (Point){MAP_LENGTH - 2, MAP_WIDTH - 2, empty};
+    printf("%d", DownRight.x);
     int y_ = UpLeft.y + 1 + rand() % (y_gap - 1);
 
     // 画中间的线
@@ -40,26 +42,31 @@ int BuildWall(Block Map[MAP_WIDTH][MAP_LENGTH], Point UpLeft, Point DownRight)
         |
        y^
     */
-    for (int x = UpLeft.x; x <= x_gap + 1; x++)
+    for (int x = 0; x <= x_gap + 1; x++) // x方向打印
     {
-        Map[y_][x] = wall;
+        Map[y_][UpLeft.x + x] = wall;
+
         // PrintMap(Map);
+        // use for test
     }
-    for (int y = UpLeft.y; y <= y_gap + 1; y++)
+    for (int y = 0; y <= y_gap + 1; y++) // y方向打印
     {
-        Map[y][x_] = wall;
+        Map[UpLeft.y + y][x_] = wall;
+
+        // PrintMap(Map);
+        // use for test
     }
     // PrintMap(Map);
 
-    Point UpLeft_1 = {UpLeft.x, UpLeft.y, empty}, DownRight_1 = {x_ - 1, y_ - 1, empty};       // 左上
-    Point UpLeft_2 = {UpLeft.x, y_ + 1, empty}, DownRight_2 = {x_ - 1, DownRight.y, empty};    // 左下
-    Point UpLeft_3 = {x_ + 1, UpLeft.y, empty}, DownRight_3 = {DownRight.x, y_ - 1, empty};    // 右上
-    Point UpLeft_4 = {x_ + 1, y_ + 1, empty}, DownRight_4 = {DownRight.x, DownRight.y, empty}; // 右下
-    // 分开来的四个区域，递归分开
-    BuildWall(Map, UpLeft_1, DownRight_1); // 左上
-    BuildWall(Map, UpLeft_2, DownRight_2); // 左下
-    BuildWall(Map, UpLeft_3, DownRight_3); // 右上
-    BuildWall(Map, UpLeft_4, DownRight_4); // 右下
+    // Point UpLeft_1 = {UpLeft.x, UpLeft.y, empty}, DownRight_1 = {x_ - 1, y_ - 1, empty};       // 左上
+    // Point UpLeft_2 = {UpLeft.x, y_ + 1, empty}, DownRight_2 = {x_ - 1, DownRight.y, empty};    // 左下
+    // Point UpLeft_3 = {x_ + 1, UpLeft.y, empty}, DownRight_3 = {DownRight.x, y_ - 1, empty};    // 右上
+    // Point UpLeft_4 = {x_ + 1, y_ + 1, empty}, DownRight_4 = {DownRight.x, DownRight.y, empty}; // 右下
+    // // 分开来的四个区域，递归分开
+    // BuildWall(Map, UpLeft_1, DownRight_1); // 左上
+    // BuildWall(Map, UpLeft_2, DownRight_2); // 左下
+    // BuildWall(Map, UpLeft_3, DownRight_3); // 右上
+    // BuildWall(Map, UpLeft_4, DownRight_4); // 右下
 
     // 随机三面墙里面打洞 从横的墙壁的顺时针编号为0,1,2,3
     // int a[4] = {0};
@@ -100,9 +107,9 @@ int RandomMapGenerate(Block Map[MAP_WIDTH][MAP_LENGTH])
         for (int y = 0; y < MAP_WIDTH; y++)
         {
             Map[y][x] = empty;
-            // PrintMap(Map);
         }
     }
+    PrintMap(Map); // use for test
 
     // 四周墙壁x，y
     for (int x = 0; x < MAP_LENGTH; x++)
@@ -118,6 +125,7 @@ int RandomMapGenerate(Block Map[MAP_WIDTH][MAP_LENGTH])
     PrintMap(Map);
 
     Point UpLeft = {1, 1, empty}, DownRight = {MAP_LENGTH - 2, MAP_WIDTH - 2, empty}; // 左上和右下的点确定矩形 (1,1)~(MAP_LENGTH - 2, MAP_WIDTH - 2)为可用范围
+
     BuildWall(Map, UpLeft, DownRight);
 
     return 0;
@@ -125,9 +133,30 @@ int RandomMapGenerate(Block Map[MAP_WIDTH][MAP_LENGTH])
 
 int PrintMap(Block Map[MAP_WIDTH][MAP_LENGTH])
 {
-    for (int x = 0; x < MAP_LENGTH; x++)
+
+    printf("  ");
+    for (int i = 0; i < 10; i++) // use for test
     {
-        for (int y = 0; y < MAP_WIDTH; y++)
+        printf(" %d", i);
+    }
+    for (int i = 10; i < MAP_LENGTH; i++) // use for test
+    {
+        printf("%d", i);
+    }
+    printf("\n");
+
+    for (int y = 0; y < MAP_WIDTH; y++)
+    {
+        if (y < 10)
+        {
+            printf(" %d", y);
+        }
+        else
+        {
+            printf("%d", y);
+        }
+
+        for (int x = 0; x < MAP_LENGTH; x++)
         {
             switch (Map[y][x])
             {

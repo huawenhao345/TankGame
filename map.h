@@ -1,8 +1,8 @@
 #ifndef _MAP_H_
 #define _MAP_H_ 1
 
-#define MAP_LENGTH 52
-#define MAP_WIDTH 52
+#define MAP_LENGTH 12
+#define MAP_WIDTH 12
 typedef enum block
 {
     empty = 0,

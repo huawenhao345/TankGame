@@ -10,7 +10,7 @@
         "-g",
         "${fileDirname}\\*.c",
         "-o",
-        "${fileDirname}\\main.exe"
+        "${fileDirname}\\build\\main.exe"
       ],
       "options": {
         "cwd": "${fileDirname}"
