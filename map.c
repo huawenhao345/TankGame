@@ -23,9 +23,9 @@ int BuildWall(Block Map[MAP_WIDTH][MAP_LENGTH], Point UpLeft, Point DownRight)
     }
 
     int x_ = UpLeft.x + 1 + rand() % (x_gap - 1);
-    // DownRight = (Point){MAP_LENGTH - 2, MAP_WIDTH - 2, empty};
-    printf("%d", DownRight.x);
     int y_ = UpLeft.y + 1 + rand() % (y_gap - 1);
+    // DownRight = (Point){MAP_LENGTH - 2, MAP_WIDTH - 2, empty};
+    // printf("%d", DownRight.x);
 
     // 画中间的线
     /*实际上，map[][]的正确方向应该是这样的  map[y][x]才匹配下图
@@ -58,15 +58,15 @@ int BuildWall(Block Map[MAP_WIDTH][MAP_LENGTH], Point UpLeft, Point DownRight)
     }
     // PrintMap(Map);
 
-    // Point UpLeft_1 = {UpLeft.x, UpLeft.y, empty}, DownRight_1 = {x_ - 1, y_ - 1, empty};       // 左上
-    // Point UpLeft_2 = {UpLeft.x, y_ + 1, empty}, DownRight_2 = {x_ - 1, DownRight.y, empty};    // 左下
-    // Point UpLeft_3 = {x_ + 1, UpLeft.y, empty}, DownRight_3 = {DownRight.x, y_ - 1, empty};    // 右上
-    // Point UpLeft_4 = {x_ + 1, y_ + 1, empty}, DownRight_4 = {DownRight.x, DownRight.y, empty}; // 右下
-    // // 分开来的四个区域，递归分开
-    // BuildWall(Map, UpLeft_1, DownRight_1); // 左上
-    // BuildWall(Map, UpLeft_2, DownRight_2); // 左下
-    // BuildWall(Map, UpLeft_3, DownRight_3); // 右上
-    // BuildWall(Map, UpLeft_4, DownRight_4); // 右下
+    Point UpLeft_1 = {UpLeft.x, UpLeft.y, empty}, DownRight_1 = {x_ - 1, y_ - 1, empty};       // 左上
+    Point UpLeft_2 = {UpLeft.x, y_ + 1, empty}, DownRight_2 = {x_ - 1, DownRight.y, empty};    // 左下
+    Point UpLeft_3 = {x_ + 1, UpLeft.y, empty}, DownRight_3 = {DownRight.x, y_ - 1, empty};    // 右上
+    Point UpLeft_4 = {x_ + 1, y_ + 1, empty}, DownRight_4 = {DownRight.x, DownRight.y, empty}; // 右下
+    // 分开来的四个区域，递归分开
+    BuildWall(Map, UpLeft_1, DownRight_1); // 左上
+    BuildWall(Map, UpLeft_2, DownRight_2); // 左下
+    BuildWall(Map, UpLeft_3, DownRight_3); // 右上
+    BuildWall(Map, UpLeft_4, DownRight_4); // 右下
 
     // 随机三面墙里面打洞 从横的墙壁的顺时针编号为0,1,2,3
     // int a[4] = {0};
