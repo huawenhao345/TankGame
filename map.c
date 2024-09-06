@@ -69,31 +69,31 @@ int BuildWall(Block Map[MAP_WIDTH][MAP_LENGTH], Point UpLeft, Point DownRight)
     BuildWall(Map, UpLeft_4, DownRight_4); // 右下
 
     // 随机三面墙里面打洞 从横的墙壁的顺时针编号为0,1,2,3
-    // int a[4] = {0};
-    // a[rand() % 4] = 1;
-    // for (int i = 0; i < 4; i++)
-    // {
-    //     if (a[i] == 0)
-    //     {
-    //         switch (i)
-    //         {
-    //         case 0: // 0号墙
-    //             Map[UpLeft.x + rand() % (x_ - UpLeft.x + 1)][y_] = empty;
-    //             break;
-    //         case 1: // 1号墙
-    //             Map[x_][UpLeft.y + rand() % (y_ - UpLeft.y + 1)] = empty;
-    //             break;
-    //         case 2: // 2号墙
-    //             Map[x_ + rand() % (x_ - UpLeft.x + 1)][y_] = empty;
-    //             break;
-    //         case 3: // 3号墙
-    //             Map[x_][y_ + rand() % (y_ - UpLeft.y + 1)] = empty;
-    //             break;
-    //         default:
-    //             break;
-    //         }
-    //     }
-    // }
+    int a[4] = {0};
+    a[rand() % 4] = 1;
+    for (int i = 0; i < 4; i++)
+    {
+        if (a[i] == 0)
+        {
+            switch (i)
+            {
+            case 0: // 0号墙
+                Map[UpLeft.x + rand() % (x_ - UpLeft.x + 1)][y_] = empty;
+                break;
+            case 1: // 1号墙
+                Map[x_][UpLeft.y + rand() % (y_ - UpLeft.y + 1)] = empty;
+                break;
+            case 2: // 2号墙
+                Map[x_ + rand() % (x_ - UpLeft.x + 1)][y_] = empty;
+                break;
+            case 3: // 3号墙
+                Map[x_][y_ + rand() % (y_ - UpLeft.y + 1)] = empty;
+                break;
+            default:
+                break;
+            }
+        }
+    }
 
     return 0;
 }
