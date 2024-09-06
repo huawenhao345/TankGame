@@ -8,6 +8,7 @@
     "map.h": "c",
     "array": "c",
     "string_view": "c",
-    "type_traits": "c"
+    "type_traits": "c",
+    "math.h": "c"
   }
 }

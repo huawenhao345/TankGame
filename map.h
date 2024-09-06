@@ -7,7 +7,7 @@ typedef enum block
 {
     empty = 0,
     wall,
-    tank,
+    player,
     enemy
 } Block;
 
@@ -19,7 +19,7 @@ typedef struct
 } Point;
 
 int PrintMap(Block Map[MAP_WIDTH][MAP_LENGTH]);
-int RandomMapGenerate(Block Map[MAP_WIDTH][MAP_LENGTH]);
+int RcursiveMapGenerate(Block Map[MAP_WIDTH][MAP_LENGTH]);
 
 extern Block GameMap[MAP_WIDTH][MAP_LENGTH];
 

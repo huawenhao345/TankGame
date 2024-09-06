@@ -3,12 +3,18 @@
 #include <stdlib.h>
 #include <math.h>
 #include "map.h"
-/**
- * @brief
- * 0 空格
- * 1 砖
- * 2 坦克
- */
+
+int MapInitialize(Block Map[MAP_WIDTH][MAP_LENGTH])
+{
+    for (int x = 0; x < MAP_LENGTH; x++)
+    {
+        for (int y = 0; y < MAP_WIDTH; y++)
+        {
+            Map[y][x] = empty;
+        }
+    }
+    // PrintMap(Map); // use for test
+}
 
 /**
  * @brief 采用递归分割算法随机生成地图
@@ -119,19 +125,17 @@ int BuildWall(Block Map[MAP_WIDTH][MAP_LENGTH], Point UpLeft, Point DownRight)
     return 0;
 }
 
-int RandomMapGenerate(Block Map[MAP_WIDTH][MAP_LENGTH])
+/**
+ * @brief 随机生成地图
+ *
+ * @param Map
+ * @return int
+ */
+int RcursiveMapGenerate(Block Map[MAP_WIDTH][MAP_LENGTH])
 {
     // 初始化
     srand((unsigned)time(NULL));
-    for (int x = 0; x < MAP_LENGTH; x++)
-    {
-        for (int y = 0; y < MAP_WIDTH; y++)
-        {
-            Map[y][x] = empty;
-        }
-    }
-
-    // PrintMap(Map); // use for test
+    MapInitialize(Map);
 
     // 四周墙壁x，y
     for (int x = 0; x < MAP_LENGTH; x++)
@@ -154,6 +158,12 @@ int RandomMapGenerate(Block Map[MAP_WIDTH][MAP_LENGTH])
     return 0;
 }
 
+/**
+ * @brief 打印当前地图
+ *
+ * @param Map
+ * @return int
+ */
 int PrintMap(Block Map[MAP_WIDTH][MAP_LENGTH])
 {
 
@@ -185,18 +195,18 @@ int PrintMap(Block Map[MAP_WIDTH][MAP_LENGTH])
         {
             switch (Map[y][x])
             {
-            case 0:
-                printf("  ");
+            case 0:           // empty
+                printf("  "); // CHARWHITH的依据是这里多少字符
                 break;
-            case 1:
-                printf(" O");
+            case 1:           // wall
+                printf("OO"); // CHARWHITH的依据是这里多少字符
                 break;
-            case 2:
-                printf("-");
+            case 2:           // player
+                printf("@@"); // CHARWHITH的依据是这里多少字符
                 break;
-            // case 3:
-
-            //     break;
+            case 3:           // ememy
+                printf("&&"); // CHARWHITH的依据是这里多少字符
+                break;
             // case 4:
             //     break;
             // case 5:
@@ -206,7 +216,10 @@ int PrintMap(Block Map[MAP_WIDTH][MAP_LENGTH])
                 break;
             }
         }
-        printf("\n");
+        if (y < MAP_LENGTH - 1)
+        {
+            printf("\n");
+        }
     }
     return 0;
 }
