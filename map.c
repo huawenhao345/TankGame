@@ -10,8 +10,14 @@
  * 2 坦克
  */
 
-Block GameMap[MAP_WIDTH][MAP_LENGTH] = {};
-
+/**
+ * @brief 采用递归分割算法随机生成地图
+ *
+ * @param Map
+ * @param UpLeft
+ * @param DownRight
+ * @return int
+ */
 int BuildWall(Block Map[MAP_WIDTH][MAP_LENGTH], Point UpLeft, Point DownRight)
 {
     int x_gap = DownRight.x - UpLeft.x;
@@ -56,7 +62,6 @@ int BuildWall(Block Map[MAP_WIDTH][MAP_LENGTH], Point UpLeft, Point DownRight)
         // PrintMap(Map);
         // use for test
     }
-    // PrintMap(Map);
 
     Point UpLeft_1 = {UpLeft.x, UpLeft.y, empty}, DownRight_1 = {x_ - 1, y_ - 1, empty};       // 左上
     Point UpLeft_2 = {UpLeft.x, y_ + 1, empty}, DownRight_2 = {x_ - 1, DownRight.y, empty};    // 左下
@@ -71,27 +76,42 @@ int BuildWall(Block Map[MAP_WIDTH][MAP_LENGTH], Point UpLeft, Point DownRight)
     // 随机三面墙里面打洞 从横的墙壁的顺时针编号为0,1,2,3
     int a[4] = {0};
     a[rand() % 4] = 1;
-    for (int i = 0; i < 4; i++) // TODO:解决位于顶点出处的路的生成
+    for (int i = 0; i < 4; i++)
     {
         if (a[i] == 0)
         {
+            int rx = x_;
+            int ry = y_;
             switch (i)
             {
             case 0: // 0号墙
-                Map[y_][UpLeft.x + rand() % (x_ - UpLeft.x + 1)] = empty;
+                do
+                {
+                    rx = UpLeft.x + rand() % (x_ - UpLeft.x + 1);
+                } while (Map[ry - 1][rx] + Map[ry + 1][rx] + Map[ry][rx - 1] + Map[ry][rx + 1] > 2 * wall); // 解决位于顶点出处的路的生成
                 break;
             case 1: // 1号墙
-                Map[UpLeft.y + rand() % (y_ - UpLeft.y + 1)][x_] = empty;
+                do
+                {
+                    ry = UpLeft.y + rand() % (y_ - UpLeft.y + 1);
+                } while (Map[ry - 1][rx] + Map[ry + 1][rx] + Map[ry][rx - 1] + Map[ry][rx + 1] > 2 * wall);
                 break;
             case 2: // 2号墙
-                Map[y_][x_ + rand() % (x_ - UpLeft.x + 1)] = empty;
+                do
+                {
+                    rx = x_ + rand() % (x_ - UpLeft.x + 1);
+                } while (Map[ry - 1][rx] + Map[ry + 1][rx] + Map[ry][rx - 1] + Map[ry][rx + 1] > 2 * wall);
                 break;
             case 3: // 3号墙
-                Map[y_ + rand() % (y_ - UpLeft.y + 1)][x_] = empty;
+                do
+                {
+                    ry = y_ + rand() % (y_ - UpLeft.y + 1);
+                } while (Map[ry - 1][rx] + Map[ry + 1][rx] + Map[ry][rx - 1] + Map[ry][rx + 1] > 2 * wall);
                 break;
             default:
                 break;
             }
+            Map[ry][rx] = empty;
         }
         // PrintMap(Map); // use for test
     }
@@ -110,7 +130,8 @@ int RandomMapGenerate(Block Map[MAP_WIDTH][MAP_LENGTH])
             Map[y][x] = empty;
         }
     }
-    PrintMap(Map); // use for test
+
+    // PrintMap(Map); // use for test
 
     // 四周墙壁x，y
     for (int x = 0; x < MAP_LENGTH; x++)
@@ -123,7 +144,8 @@ int RandomMapGenerate(Block Map[MAP_WIDTH][MAP_LENGTH])
         Map[y][0] = wall;
         Map[y][MAP_LENGTH - 1] = wall;
     }
-    PrintMap(Map);
+
+    // PrintMap(Map);//use for test
 
     Point UpLeft = {1, 1, empty}, DownRight = {MAP_LENGTH - 2, MAP_WIDTH - 2, empty}; // 左上和右下的点确定矩形 (1,1)~(MAP_LENGTH - 2, MAP_WIDTH - 2)为可用范围
 
@@ -135,27 +157,29 @@ int RandomMapGenerate(Block Map[MAP_WIDTH][MAP_LENGTH])
 int PrintMap(Block Map[MAP_WIDTH][MAP_LENGTH])
 {
 
-    printf("  ");
-    for (int i = 0; i < 10; i++) // use for test
-    {
-        printf(" %d", i);
-    }
-    for (int i = 10; i < MAP_LENGTH; i++) // use for test
-    {
-        printf("%d", i);
-    }
-    printf("\n");
+    // 打印x数轴
+    //  printf("  ");
+    //  for (int i = 0; i < 10; i++) // use for test
+    //  {
+    //      printf(" %d", i);
+    //  }
+    //  for (int i = 10; i < MAP_LENGTH; i++) // use for test
+    //  {
+    //      printf("%d", i);
+    //  }
+    //  printf("\n");
 
     for (int y = 0; y < MAP_WIDTH; y++)
     {
-        if (y < 10)
-        {
-            printf(" %d", y);
-        }
-        else
-        {
-            printf("%d", y);
-        }
+        // 打印y数轴
+        // if (y < 10)
+        // {
+        //     printf(" %d", y);
+        // }
+        // else
+        // {
+        //     printf("%d", y);
+        // }
 
         for (int x = 0; x < MAP_LENGTH; x++)
         {
