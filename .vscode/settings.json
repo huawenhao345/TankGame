@@ -11,5 +11,6 @@
     "type_traits": "c",
     "math.h": "c",
     "conio.h": "c"
-  }
+  },
+  "conventionalCommits.scopes": ["player.c"]
 }
