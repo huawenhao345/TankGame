@@ -33,7 +33,7 @@ int main(void)
 
     PlayerPoint = AddPlayer(GameMap);
     PrintMap(GameMap);
-    // PlayerMove(GameMap, PlayerPoint, UP);
+    PlayerMove(GameMap, PlayerPoint, UP);
     getch();
     PlayerMove(GameMap, PlayerPoint, DOWN);
     getch();
