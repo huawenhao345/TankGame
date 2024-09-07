@@ -4,6 +4,12 @@
 #include <math.h>
 #include "map.h"
 
+/**
+ * @brief 初始化地图
+ *
+ * @param Map
+ * @return int
+ */
 int MapInitialize(Block Map[MAP_WIDTH][MAP_LENGTH])
 {
     for (int x = 0; x < MAP_LENGTH; x++)
@@ -13,6 +19,20 @@ int MapInitialize(Block Map[MAP_WIDTH][MAP_LENGTH])
             Map[y][x] = empty;
         }
     }
+    // PrintMap(Map); // use for test
+
+    // 四周墙壁x，y
+    for (int x = 0; x < MAP_LENGTH; x++)
+    {
+        Map[0][x] = wall;
+        Map[MAP_WIDTH - 1][x] = wall;
+    }
+    for (int y = 0; y < MAP_LENGTH; y++)
+    {
+        Map[y][0] = wall;
+        Map[y][MAP_LENGTH - 1] = wall;
+    }
+
     // PrintMap(Map); // use for test
 }
 
@@ -137,20 +157,6 @@ int RcursiveMapGenerate(Block Map[MAP_WIDTH][MAP_LENGTH])
     srand((unsigned)time(NULL));
     MapInitialize(Map);
 
-    // 四周墙壁x，y
-    for (int x = 0; x < MAP_LENGTH; x++)
-    {
-        Map[0][x] = wall;
-        Map[MAP_WIDTH - 1][x] = wall;
-    }
-    for (int y = 0; y < MAP_LENGTH; y++)
-    {
-        Map[y][0] = wall;
-        Map[y][MAP_LENGTH - 1] = wall;
-    }
-
-    // PrintMap(Map);//use for test
-
     Point UpLeft = {1, 1, empty}, DownRight = {MAP_LENGTH - 2, MAP_WIDTH - 2, empty}; // 左上和右下的点确定矩形 (1,1)~(MAP_LENGTH - 2, MAP_WIDTH - 2)为可用范围
 
     BuildWall(Map, UpLeft, DownRight);
@@ -166,30 +172,33 @@ int RcursiveMapGenerate(Block Map[MAP_WIDTH][MAP_LENGTH])
  */
 int PrintMap(Block Map[MAP_WIDTH][MAP_LENGTH])
 {
+    ScreenClear();
 
-    // 打印x数轴
-    //  printf("  ");
-    //  for (int i = 0; i < 10; i++) // use for test
-    //  {
-    //      printf(" %d", i);
-    //  }
-    //  for (int i = 10; i < MAP_LENGTH; i++) // use for test
-    //  {
-    //      printf("%d", i);
-    //  }
-    //  printf("\n");
+    // 打印x数轴 use for test
+    printf("  ");
+    for (int i = 0; i < 10; i++)
+    {
+        printf(" %d", i);
+    }
+    for (int i = 10; i < MAP_LENGTH; i++)
+    {
+        printf("%d", i);
+    }
+    printf("\n");
+    // use for test
 
     for (int y = 0; y < MAP_WIDTH; y++)
     {
-        // 打印y数轴
-        // if (y < 10)
-        // {
-        //     printf(" %d", y);
-        // }
-        // else
-        // {
-        //     printf("%d", y);
-        // }
+        // 打印y数轴 use for test
+        if (y < 10)
+        {
+            printf(" %d", y);
+        }
+        else
+        {
+            printf("%d", y);
+        }
+        // use for test
 
         for (int x = 0; x < MAP_LENGTH; x++)
         {
@@ -222,4 +231,9 @@ int PrintMap(Block Map[MAP_WIDTH][MAP_LENGTH])
         }
     }
     return 0;
+}
+
+void ScreenClear(void)
+{
+    system("cls");
 }

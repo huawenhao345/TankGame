@@ -4,6 +4,12 @@
 #include "player.h"
 #include "map.h"
 
+/**
+ * @brief 暂不用
+ *
+ * @param x
+ * @param y
+ */
 void GoToxy(int x, int y) // 光标移动函数，X表示横坐标，Y表示纵坐标。
 {
     COORD coord;                                // 使用头文件自带的坐标结构,下面的*CHARWHITH是坐标映射
@@ -27,52 +33,45 @@ Point AddPlayer(Block Map[MAP_WIDTH][MAP_LENGTH])
     return PlayerPoint;
 }
 
-Point PlayerMove(Block Map[MAP_WIDTH][MAP_LENGTH], Point PlayerPoint, MoveState State)
+int PlayerMove(Block Map[MAP_WIDTH][MAP_LENGTH], Point PlayerPoint, MoveState State)
 {
     switch (State)
     {
     case UP:
         if (Map[PlayerPoint.y + 1][PlayerPoint.x] != empty)
         {
-            break;
+            return -1;
         }
-        GoToxy(PlayerPoint.x, PlayerPoint.y);
-        printf("  "); // 清除
-        GoToxy(PlayerPoint.x, PlayerPoint.y + 1);
-        printf("@@"); // 打印玩家
+        Map[PlayerPoint.y][PlayerPoint.x] = empty;
+        Map[PlayerPoint.y + 1][PlayerPoint.x] = player;
         break;
     case DOWN:
         if (Map[PlayerPoint.y - 1][PlayerPoint.x] != empty)
         {
-            break;
+            return -1;
         }
-        GoToxy(PlayerPoint.x, PlayerPoint.y);
-        printf("  "); // 清除
-        GoToxy(PlayerPoint.x, PlayerPoint.y - 1);
-        printf("@@"); // 打印玩家
+        Map[PlayerPoint.y][PlayerPoint.x] = empty;
+        Map[PlayerPoint.y - 1][PlayerPoint.x] = player;
         break;
     case LEFT:
         if (Map[PlayerPoint.y][PlayerPoint.x - 1] != empty)
         {
-            break;
+            return -1;
         }
-        GoToxy(PlayerPoint.x, PlayerPoint.y);
-        printf("  "); // 清除
-        GoToxy(PlayerPoint.x - 1, PlayerPoint.y);
-        printf("@@"); // 打印玩家
+        Map[PlayerPoint.y][PlayerPoint.x] = empty;
+        Map[PlayerPoint.y][PlayerPoint.x - 1] = player;
         break;
     case RIGHT:
         if (Map[PlayerPoint.y][PlayerPoint.x + 1] != empty)
         {
-            break;
+            return -1;
         }
-        GoToxy(PlayerPoint.x, PlayerPoint.y);
-        printf("  "); // 清除
-        GoToxy(PlayerPoint.x + 1, PlayerPoint.y);
-        printf("@@"); // 打印玩家
+        Map[PlayerPoint.y][PlayerPoint.x] = empty;
+        Map[PlayerPoint.y][PlayerPoint.x + 1] = player;
         break;
     default:
-        return (Point){-1,-1,empty};
+        return -1;
         break;
     }
+    return 0;
 }

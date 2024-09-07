@@ -20,6 +20,7 @@ typedef struct
 
 int PrintMap(Block Map[MAP_WIDTH][MAP_LENGTH]);
 int RcursiveMapGenerate(Block Map[MAP_WIDTH][MAP_LENGTH]);
+void ScreenClear(void);
 
 extern Block GameMap[MAP_WIDTH][MAP_LENGTH];
 

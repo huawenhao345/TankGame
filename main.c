@@ -34,12 +34,13 @@ int main(void)
     PlayerPoint = AddPlayer(GameMap);
     PrintMap(GameMap);
     PlayerMove(GameMap, PlayerPoint, UP);
-    getch();
+    PrintMap(GameMap);
     PlayerMove(GameMap, PlayerPoint, DOWN);
-    getch();
+    PrintMap(GameMap);
     PlayerMove(GameMap, PlayerPoint, LEFT);
-    getch();
+    PrintMap(GameMap);
     PlayerMove(GameMap, PlayerPoint, RIGHT);
+    PrintMap(GameMap);
     getch();
 
     return 0;
@@ -48,7 +49,7 @@ int main(void)
 int initialization(void)
 {
     HideCursor();
-    system("mode con cols=45 lines=22"); // 控制窗口大小
+    // system("mode con cols=45 lines=22"); // 控制窗口大小
     return 0;
 }
 
