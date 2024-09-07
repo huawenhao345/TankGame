@@ -4,12 +4,6 @@
 #include "map.h"
 #include "player.h"
 
-/**
- * @brief
- * 0 空格
- * 1 砖
- * 2 坦克
- */
 Block GameMap[MAP_WIDTH][MAP_LENGTH] = {};
 
 // TODO:控制台控制
