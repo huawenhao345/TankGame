@@ -17,23 +17,24 @@ Block GameMap[MAP_WIDTH][MAP_LENGTH] = {};
 void HideCursor(); // 隐藏光标
 int initialization(void);
 
+Point PlayerPoint;
+
 int main(void)
 {
+#ifndef TEST
     initialization();
+#endif
 
     RcursiveMapGenerate(GameMap);
 
-    Point PlayerPoint;
-
     PlayerPoint = AddPlayer(GameMap);
-    // PrintMap(GameMap);
-    // PlayerMove(GameMap, PlayerPoint, UP);
-    // PrintMap(GameMap);
-    // PlayerMove(GameMap, PlayerPoint, DOWN);
-    // PrintMap(GameMap);
-    // PlayerMove(GameMap, PlayerPoint, LEFT);
-    // PrintMap(GameMap);
-    // PlayerMove(GameMap, PlayerPoint, RIGHT);
+    PrintMap(GameMap);
+#ifdef TEST
+    PlayerMove(GameMap, UP);
+    PlayerMove(GameMap, DOWN);
+    PlayerMove(GameMap, LEFT);
+    PlayerMove(GameMap, RIGHT);
+#endif
     PrintMap(GameMap);
     getch();
 
@@ -43,7 +44,7 @@ int main(void)
 int initialization(void)
 {
     char chCmd[32];
-    sprintf(chCmd, "mode con cols=%d lines=%d", 45 + 2, 22 + 2); // 控制窗口大小
+    sprintf(chCmd, "mode con cols=%d lines=%d", MAP_LENGTH * CHARWHITH, MAP_WIDTH); // 控制窗口大小
     system(chCmd);
     HideCursor();
     return 0;

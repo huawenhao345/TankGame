@@ -172,8 +172,11 @@ int RcursiveMapGenerate(Block Map[MAP_WIDTH][MAP_LENGTH])
  */
 int PrintMap(Block Map[MAP_WIDTH][MAP_LENGTH])
 {
+#ifndef TEST
     ScreenClear();
+#endif
 
+#ifdef TEST
     // 打印x数轴 use for test
     printf("  ");
     for (int i = 0; i < 10; i++)
@@ -185,10 +188,12 @@ int PrintMap(Block Map[MAP_WIDTH][MAP_LENGTH])
         printf("%d", i);
     }
     printf("\n");
-    // use for test
+// use for test
+#endif
 
     for (int y = 0; y < MAP_WIDTH; y++)
     {
+#ifdef TEST
         // 打印y数轴 use for test
         if (y < 10)
         {
@@ -199,6 +204,7 @@ int PrintMap(Block Map[MAP_WIDTH][MAP_LENGTH])
             printf("%d", y);
         }
         // use for test
+#endif
 
         for (int x = 0; x < MAP_LENGTH; x++)
         {
@@ -219,7 +225,6 @@ int PrintMap(Block Map[MAP_WIDTH][MAP_LENGTH])
             // case 4:
             //     break;
             // case 5:
-
             //     break;
             default:
                 break;

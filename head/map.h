@@ -3,6 +3,10 @@
 
 #define MAP_LENGTH 22
 #define MAP_WIDTH 22
+
+//test define
+// #define TEST 1
+
 typedef enum block
 {
     empty = 0,
