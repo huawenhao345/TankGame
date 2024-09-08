@@ -26,14 +26,14 @@ int main(void)
     Point PlayerPoint;
 
     PlayerPoint = AddPlayer(GameMap);
-    PrintMap(GameMap);
-    PlayerMove(GameMap, PlayerPoint, UP);
-    PrintMap(GameMap);
-    PlayerMove(GameMap, PlayerPoint, DOWN);
-    PrintMap(GameMap);
-    PlayerMove(GameMap, PlayerPoint, LEFT);
-    PrintMap(GameMap);
-    PlayerMove(GameMap, PlayerPoint, RIGHT);
+    // PrintMap(GameMap);
+    // PlayerMove(GameMap, PlayerPoint, UP);
+    // PrintMap(GameMap);
+    // PlayerMove(GameMap, PlayerPoint, DOWN);
+    // PrintMap(GameMap);
+    // PlayerMove(GameMap, PlayerPoint, LEFT);
+    // PrintMap(GameMap);
+    // PlayerMove(GameMap, PlayerPoint, RIGHT);
     PrintMap(GameMap);
     getch();
 
@@ -42,8 +42,10 @@ int main(void)
 
 int initialization(void)
 {
+    char chCmd[32];
+    sprintf(chCmd, "mode con cols=%d lines=%d", 45 + 2, 22 + 2); // 控制窗口大小
+    system(chCmd);
     HideCursor();
-    // system("mode con cols=45 lines=22"); // 控制窗口大小
     return 0;
 }
 
