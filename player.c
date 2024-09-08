@@ -43,13 +43,13 @@ int PlayerMove(Block Map[MAP_WIDTH][MAP_LENGTH], MoveState State)
             return -1;
         }
         Map[PlayerPoint.y][PlayerPoint.x] = empty;
-        #ifdef TEST
+#ifdef TEST
         PrintMap(GameMap);
 #endif
         Map[PlayerPoint.y - 1][PlayerPoint.x] = player;
         PlayerPoint.y = PlayerPoint.y - 1;
 
-        #ifdef TEST
+#ifdef TEST
         PrintMap(GameMap);
 #endif
         break;
@@ -66,7 +66,7 @@ int PlayerMove(Block Map[MAP_WIDTH][MAP_LENGTH], MoveState State)
         Map[PlayerPoint.y + 1][PlayerPoint.x] = player;
         PlayerPoint.y = PlayerPoint.y + 1;
 
-        #ifdef TEST
+#ifdef TEST
         PrintMap(GameMap);
 #endif
         break;
@@ -76,13 +76,13 @@ int PlayerMove(Block Map[MAP_WIDTH][MAP_LENGTH], MoveState State)
             return -1;
         }
         Map[PlayerPoint.y][PlayerPoint.x] = empty;
-        #ifdef TEST
+#ifdef TEST
         PrintMap(GameMap);
 #endif
         Map[PlayerPoint.y][PlayerPoint.x - 1] = player;
         PlayerPoint.x = PlayerPoint.x - 1;
 
-        #ifdef TEST
+#ifdef TEST
         PrintMap(GameMap);
 #endif
         break;
@@ -92,13 +92,13 @@ int PlayerMove(Block Map[MAP_WIDTH][MAP_LENGTH], MoveState State)
             return -1;
         }
         Map[PlayerPoint.y][PlayerPoint.x] = empty;
-        #ifdef TEST
+#ifdef TEST
         PrintMap(GameMap);
 #endif
         Map[PlayerPoint.y][PlayerPoint.x + 1] = player;
         PlayerPoint.x = PlayerPoint.x + 1;
 
-        #ifdef TEST
+#ifdef TEST
         PrintMap(GameMap);
 #endif
         break;
