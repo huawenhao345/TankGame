@@ -13,5 +13,5 @@
     "conio.h": "c",
     "console.h": "c"
   },
-  "conventionalCommits.scopes": ["player.c"]
+  "conventionalCommits.scopes": ["player.c", "map"]
 }

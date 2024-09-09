@@ -19,7 +19,7 @@
 //     SetConsoleCursorPosition(a, coord);         // 以标准输出的句柄为参数设置控制台光标坐标
 // }
 
-Point AddPlayer(Block Map[MAP_WIDTH][MAP_LENGTH])
+Point AddPlayer(Block Map[MAP_WIDTH][MAP_LENGTH], Block state)
 {
         int rx = 0, ry = 0;
         Point PlayerPoint;
@@ -27,9 +27,9 @@ Point AddPlayer(Block Map[MAP_WIDTH][MAP_LENGTH])
         {
                 rx = (rand() % (MAP_WIDTH - 1)) + 1; // 不在边框生成
                 ry = (rand() % (MAP_WIDTH - 1)) + 1;
-        } while (Map[ry][rx] == wall);
-        Map[ry][rx] = player;
-        PlayerPoint = (Point){rx, ry, player};
+        } while (Map[ry][rx] != empty);
+        Map[ry][rx] = state;
+        PlayerPoint = (Point){rx, ry, state};
         return PlayerPoint;
 }
 

@@ -17,7 +17,7 @@ typedef enum
 
 extern Point PlayerPoint;
 
-Point AddPlayer(Block Map[MAP_WIDTH][MAP_LENGTH]);
+Point AddPlayer(Block Map[MAP_WIDTH][MAP_LENGTH], Block state);
 void GoToxy(int x, int y);
 int PlayerMove(Block Map[MAP_WIDTH][MAP_LENGTH], Point *UserPoint, MoveState State);
 
