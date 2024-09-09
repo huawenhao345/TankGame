@@ -4,7 +4,7 @@
 #define MAP_LENGTH 22
 #define MAP_WIDTH 22
 
-//test define
+// test define
 // #define TEST 1
 
 typedef enum block

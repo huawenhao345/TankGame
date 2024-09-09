@@ -23,15 +23,40 @@ int main(void)
     PlayerPoint = AddPlayer(GameMap);
     PrintMap(GameMap);
 #ifdef TEST
-    PlayerMove(GameMap, UP);
-    PlayerMove(GameMap, DOWN);
-    PlayerMove(GameMap, LEFT);
-    PlayerMove(GameMap, RIGHT);
+    PlayerMove(GameMap, &PlayerPoint, UP);
+    PlayerMove(GameMap, &PlayerPoint, DOWN);
+    PlayerMove(GameMap, &PlayerPoint, LEFT);
+    PlayerMove(GameMap, &PlayerPoint, RIGHT);
 #endif
     PrintMap(GameMap);
 
     HANDLE hwnd2 = GetConsoleWindow();
     WindowShake(hwnd2);
+    while (1)
+    {
+
+        if (KEY_DOWN_FOREGROUND(hwnd2, VK_UP))
+        {
+            PlayerMove(GameMap, &PlayerPoint, UP);
+            PrintMap(GameMap);
+        }
+        if (KEY_DOWN_FOREGROUND(hwnd2, VK_DOWN))
+        {
+            PlayerMove(GameMap, &PlayerPoint, DOWN);
+            PrintMap(GameMap);
+        }
+        if (KEY_DOWN_FOREGROUND(hwnd2, VK_LEFT))
+        {
+            PlayerMove(GameMap, &PlayerPoint, LEFT);
+            PrintMap(GameMap);
+        }
+        if (KEY_DOWN_FOREGROUND(hwnd2, VK_RIGHT))
+        {
+            PlayerMove(GameMap, &PlayerPoint, RIGHT);
+            PrintMap(GameMap);
+        }
+        Sleep(10);
+    }
     getch();
 
     return 0;
