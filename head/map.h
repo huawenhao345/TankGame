@@ -4,6 +4,8 @@
 #define MAP_LENGTH 22
 #define MAP_WIDTH 22
 
+#define ROUTEWHITH 4
+
 // test define
 // #define TEST 1
 

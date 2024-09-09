@@ -49,7 +49,7 @@ int BuildWall(Block Map[MAP_WIDTH][MAP_LENGTH], Point UpLeft, Point DownRight)
     int x_gap = DownRight.x - UpLeft.x;
     int y_gap = DownRight.y - UpLeft.y;
 
-    if (x_gap < 2 || y_gap < 2)
+    if (x_gap < ROUTEWHITH || y_gap < ROUTEWHITH)
     {
         return -1;
     }
@@ -151,7 +151,7 @@ int BuildWall(Block Map[MAP_WIDTH][MAP_LENGTH], Point UpLeft, Point DownRight)
  * @param Map
  * @return int
  */
-int RcursiveMapGenerate(Block Map[MAP_WIDTH][MAP_LENGTH])
+int RcursiveMapGenerate(Block Map[MAP_WIDTH][MAP_LENGTH]) // TODO:改进地图生成逻辑，让所有路可以互通
 {
     // 初始化
     srand((unsigned)time(NULL));
