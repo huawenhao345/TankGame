@@ -3,7 +3,6 @@
 #include "player.h"
 #include "console.h"
 
-// TODO:增加窗口抖动效果
 // TODO:获取屏幕的大小
 
 int initialization(void)
@@ -22,7 +21,7 @@ int initialization(void)
     SetConsoleCursorInfo(hwnd, &cursor_info); // SetConsoleCursorInfo用来设置指定的控制台光标的大小和可见性。
 
     SetConsoleTitle("TankGame");        // 设置窗口标题
-    MoveWindow2(hwnd2, 500, 500, TRUE); // TODO:搞清楚为什么MoveWindow2(hwnd, 500, 500, TRUE);不起作用
+    MoveWindow2(hwnd2, 100, 100, TRUE); // TODO:搞清楚为什么MoveWindow2(hwnd, 500, 500, TRUE);不起作用
 
     return 0;
 }
@@ -63,13 +62,13 @@ WINBOOL WindowShake(HWND hwnd)
         for (int i = 0; i <= 5; i++)
         {
             Sleep(1);
-            MoveWindow2(hwnd, rt.right - i, rt.top, FALSE); // BUG：位置参数可能有点问题
+            MoveWindow2(hwnd, rt.left - i, rt.top, FALSE);
         }
         for (int i = 0; i <= 5; i++)
         {
             Sleep(1);
-            MoveWindow2(hwnd, rt.right - 5 + i, rt.top, FALSE);
+            MoveWindow2(hwnd, rt.left - 5 + i, rt.top, FALSE);
         }
     }
-    return MoveWindow2(hwnd, rt.right, rt.top, TRUE);
+    return MoveWindow2(hwnd, rt.left, rt.top, TRUE);
 }
