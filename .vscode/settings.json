@@ -10,7 +10,8 @@
     "string_view": "c",
     "type_traits": "c",
     "math.h": "c",
-    "conio.h": "c"
+    "conio.h": "c",
+    "console.h": "c"
   },
   "conventionalCommits.scopes": ["player.c"]
 }
