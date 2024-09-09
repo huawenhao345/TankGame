@@ -10,7 +10,6 @@ Block GameMap[MAP_WIDTH][MAP_LENGTH] = {};
 // TODO:玩家控制
 // TODO:敌人a
 
-
 Point PlayerPoint;
 
 int main(void)
@@ -30,6 +29,9 @@ int main(void)
     PlayerMove(GameMap, RIGHT);
 #endif
     PrintMap(GameMap);
+
+    HANDLE hwnd2 = GetConsoleWindow();
+    WindowShake(hwnd2);
     getch();
 
     return 0;

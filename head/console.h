@@ -3,8 +3,8 @@
 
 #include <windows.h>
 
-void HideCursor(); // 隐藏光标
 int initialization(void);
 WINBOOL MoveWindow2(HWND hwnd, int X, int Y, BOOL bRepaint);
+WINBOOL WindowShake(HWND hwnd);
 
 #endif
