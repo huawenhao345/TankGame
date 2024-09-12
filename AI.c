@@ -22,16 +22,60 @@ int FreeList(node *list)
     return 0;
 }
 
-int AddList(node *lastnode, Point point)
+node *AddList(node *endNode, Point newPoint)
 {
+    if (endNode == NULL)
+    {
+        return -1;
+    }
+    node *newnode = (node *)malloc(sizeof(node));
+    if (newnode == NULL)
+    {
+        return -1;
+    }
+    newnode->point = newPoint;
+    newnode->next = NULL;
+    endNode->next = newnode;
+    endNode = newnode;
+    return endNode;
 }
 
-int RemoveNode(node *list, Point point)
+int RemoveNode(node *list, Point cpoint)
 {
+    if (list == NULL)
+    {
+        return -1;
+    }
+
+    node *current = list;
+
+    while (current->next != NULL)
+    {
+        if (current->next->point.x == cpoint.x && current->next->point.y == cpoint.y)
+        {
+        }
+        current = current->next;
+    }
+    return -1;
 }
 
-node *SearchNode()
+node *SearchNode(node *list, Point cpoint)
 {
+    if (list == NULL)
+    {
+        return NULL;
+    }
+
+    node *current = list;
+    while (current != NULL)
+    {
+        if (current->point.x == cpoint.x && current->point.y == cpoint.y)
+        {
+            return current;
+        }
+        current = current->next;
+    }
+    return NULL;
 }
 
 int AIMove(Block Map[MAP_WIDTH][MAP_LENGTH], Point PlayerPoint, Point AIPoint) // 使用自动寻路A*算法
