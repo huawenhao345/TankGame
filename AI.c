@@ -26,12 +26,12 @@ node *AddList(node *endNode, Point newPoint)
 {
     if (endNode == NULL)
     {
-        return -1;
+        return NULL;
     }
     node *newnode = (node *)malloc(sizeof(node));
     if (newnode == NULL)
     {
-        return -1;
+        return NULL;
     }
     newnode->point = newPoint;
     newnode->next = NULL;

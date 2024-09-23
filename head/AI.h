@@ -4,10 +4,10 @@
 #include "map.h"
 #define AIMAX 5
 
-typedef struct
+typedef struct _node_
 {
     Point point;
-    node *next;
-} node,*pnote;
+    struct _node_ *next;
+} node, *pnote;
 
 #endif
