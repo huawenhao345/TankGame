@@ -10,4 +10,6 @@ typedef struct _node_
     struct _node_ *next;
 } node, *pnote;
 
+int AIMove(Block Map[MAP_WIDTH][MAP_LENGTH], Point PlayerPoint, Point AIPoint);
+
 #endif

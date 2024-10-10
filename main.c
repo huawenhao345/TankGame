@@ -66,6 +66,10 @@ RE:
         {
             goto RE;
         }
+        if (KEY_DOWN_FOREGROUND(hwnd2, 'A')) // 小写的r不行
+        {
+            AIMove(GameMap, PlayerPoint, AIPoint[0]);
+        }
         Sleep(10);
     }
     getch();
