@@ -4,20 +4,20 @@
 #include "player.h"
 #include "map.h"
 
-// /**
-//  * @brief 暂不用
-//  *
-//  * @param x
-//  * @param y
-//  */
-// void GoToxy(int x, int y) // 光标移动函数，X表示横坐标，Y表示纵坐标。
-// {
-//     COORD coord;                                // 使用头文件自带的坐标结构,下面的*CHARWHITH是坐标映射
-//     coord.X = x * CHARWHITH;                    // 这里将int类型值传给short,不过程序中涉及的坐标值均不会超过short范围
-//     coord.Y = y;                                // y不需要坐标映射
-//     HANDLE a = GetStdHandle(STD_OUTPUT_HANDLE); // 获得标准输出句柄
-//     SetConsoleCursorPosition(a, coord);         // 以标准输出的句柄为参数设置控制台光标坐标
-// }
+/**
+ * @brief 暂不用
+ *
+ * @param x
+ * @param y
+ */
+void GoToxy(int x, int y) // 光标移动函数，X表示横坐标，Y表示纵坐标。
+{
+        COORD coord;                                // 使用头文件自带的坐标结构,下面的*CHARWHITH是坐标映射
+        coord.X = x * CHARWHITH;                    // 这里将int类型值传给short,不过程序中涉及的坐标值均不会超过short范围
+        coord.Y = y;                                // y不需要坐标映射
+        HANDLE a = GetStdHandle(STD_OUTPUT_HANDLE); // 获得标准输出句柄
+        SetConsoleCursorPosition(a, coord);         // 以标准输出的句柄为参数设置控制台光标坐标
+}
 
 Point AddPlayer(Block Map[MAP_WIDTH][MAP_LENGTH], Block state)
 {
